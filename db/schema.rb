@@ -24,4 +24,16 @@ ActiveRecord::Schema.define(version: 2020_08_04_202635) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.boolean "admin", default: false
+    t.bigint "region_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["region_id"], name: "index_users_on_region_id"
+  end
+
+  add_foreign_key "users", "regions"
 end
