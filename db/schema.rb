@@ -10,15 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_04_202635) do
+ActiveRecord::Schema.define(version: 2020_08_05_214736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "locations", force: :cascade do |t|
+    t.string "name"
+    t.text "notes"
+    t.decimal "lat", precision: 10, scale: 6
+    t.decimal "lng", precision: 10, scale: 6
+    t.integer "zoom"
+    t.string "street"
+    t.string "city"
+    t.string "state"
+    t.bigint "region_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["region_id"], name: "index_locations_on_region_id"
+  end
+
   create_table "regions", force: :cascade do |t|
     t.string "name"
-    t.integer "lat"
-    t.integer "lng"
+    t.decimal "lat", precision: 10, scale: 6
+    t.decimal "lng", precision: 10, scale: 6
     t.integer "zoom"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -35,5 +50,6 @@ ActiveRecord::Schema.define(version: 2020_08_04_202635) do
     t.index ["region_id"], name: "index_users_on_region_id"
   end
 
+  add_foreign_key "locations", "regions"
   add_foreign_key "users", "regions"
 end
