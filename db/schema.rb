@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2020_08_06_002141) do
     t.string "name"
     t.text "notes"
     t.boolean "available"
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.bigint "location_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
