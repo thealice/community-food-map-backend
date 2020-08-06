@@ -1,4 +1,4 @@
-class FoodSourcesController < ApplicationController
+class Api::V1::FoodSourcesController < ApplicationController
   before_action :set_food_source, only: [:show, :update, :destroy]
 
   # GET /food_sources
