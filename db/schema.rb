@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_05_214736) do
+ActiveRecord::Schema.define(version: 2020_08_06_000503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,9 @@ ActiveRecord::Schema.define(version: 2020_08_05_214736) do
     t.bigint "region_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
     t.index ["region_id"], name: "index_locations_on_region_id"
+    t.index ["user_id"], name: "index_locations_on_user_id"
   end
 
   create_table "regions", force: :cascade do |t|
@@ -51,5 +53,6 @@ ActiveRecord::Schema.define(version: 2020_08_05_214736) do
   end
 
   add_foreign_key "locations", "regions"
+  add_foreign_key "locations", "users"
   add_foreign_key "users", "regions"
 end
