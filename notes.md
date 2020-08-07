@@ -1,4 +1,5 @@
 ## TO DO
 -[] remove extra actions (or files) created by generator
--[] nested form for adding food source to location (from location form)??
--[]  
+-[] Food Source route should be nested under location
+-[] Food source form should be nested under location form?
+-[] Should Location be nested under Region as well?
