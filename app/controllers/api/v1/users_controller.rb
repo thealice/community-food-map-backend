@@ -1,5 +1,10 @@
-class Api::V1:UsersController < ApplicationController
+class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
+
+  def show
+    user_json = UserSerializer.new(@user).serialized_json
+    render json: user_json
+  end
 
   # POST /users
   def create
