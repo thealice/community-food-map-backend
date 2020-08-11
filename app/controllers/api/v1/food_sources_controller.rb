@@ -4,13 +4,14 @@ class Api::V1::FoodSourcesController < ApplicationController
   # GET /food_sources
   def index
     @food_sources = FoodSource.all
-
-    render json: @food_sources
+    food_sources_json = FoodSourceSerializer.new(@food_sources).serialized_json
+    render json: food_sources_json
   end
 
   # GET /food_sources/1
   def show
-    render json: @food_source
+    food_source_json = FoodSourceSerializer.new(@food_source).serialized_json
+    render json: food_source_json
   end
 
   # POST /food_sources
