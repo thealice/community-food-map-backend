@@ -3,7 +3,8 @@ class Location < ApplicationRecord
     belongs_to :user
     has_many :food_sources, dependent: :destroy
 
-    validates_presence_of :name
+    validates_presence_of :lat
+    validates_presence_of :lng
 
     # accepts_nested_attributes_for :food_sources, allow_destroy: true, reject_if: proc { |attr| attr['name'].blank? }
 
