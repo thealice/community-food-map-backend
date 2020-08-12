@@ -9,6 +9,7 @@ class CreateLocations < ActiveRecord::Migration[6.0]
       t.string :street
       t.string :city
       t.string :state
+      t.string :zipcode
       t.references :region, foreign_key: true
       t.references :user, foreign_key: true
 
