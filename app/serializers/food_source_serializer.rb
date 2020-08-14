@@ -1,6 +1,6 @@
 class FoodSourceSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :name, :notes, :available, :location_id
+  attributes :id, :name, :notes, :available, :location_id
   
   attribute :user do | food |
     {
