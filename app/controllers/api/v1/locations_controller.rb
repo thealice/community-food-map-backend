@@ -1,27 +1,26 @@
 class Api::V1::LocationsController < ApplicationController
   before_action :set_location, only: [:show, :update, :destroy]
 
-  # GET /locations
   def index
     @locations = Location.all
     locations_json = LocationSerializer.new(@locations).serialized_json
     render json: locations_json
   end
 
-  # GET /locations/1
   def show
     location_json = LocationSerializer.new(@location).serialized_json
     render json: location_json
   end
 
-  # POST /locations
   def create
     @location = Location.new(location_params)
-    location_json = LocationSerializer.new(@location).serialized_json
     if @location.save
-      render json: location_json, status: :created, location: @location
+      render json:  LocationSerializer.new(@location), status: :created
     else
-      render json: @location.errors, status: :unprocessable_entity
+      error_resp = {
+        error: @location.errors.full_messages.to_sentence
+      }
+      render json: error_resp, status: :unprocessable_entity
     end
   end
 
@@ -31,7 +30,10 @@ class Api::V1::LocationsController < ApplicationController
       location_json = LocationSerializer.new(@location).serialized_json
       render json: location_json
     else
-      render json: @location.errors, status: :unprocessable_entity
+      error_resp = {
+        error: @location.errors.full_messages.to_sentence
+      }
+      render json: error_resp, status: :unprocessable_entity
     end
   end
 
@@ -41,12 +43,11 @@ class Api::V1::LocationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+   
     def set_location
       @location = Location.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
     def location_params
       params.require(:location).permit(:name, :notes, :lat, :lng, :zoom, :street, :city, :state, :zipcode, :region_id, :user_id)
     end
