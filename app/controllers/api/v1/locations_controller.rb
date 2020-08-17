@@ -17,9 +17,9 @@ class Api::V1::LocationsController < ApplicationController
   # POST /locations
   def create
     @location = Location.new(location_params)
-
+    location_json = LocationSerializer.new(@location).serialized_json
     if @location.save
-      render json: @location, status: :created, location: @location
+      render json: location_json, status: :created, location: @location
     else
       render json: @location.errors, status: :unprocessable_entity
     end
@@ -28,7 +28,8 @@ class Api::V1::LocationsController < ApplicationController
   # PATCH/PUT /locations/1
   def update
     if @location.update(location_params)
-      render json: @location
+      location_json = LocationSerializer.new(@location).serialized_json
+      render json: location_json
     else
       render json: @location.errors, status: :unprocessable_entity
     end
