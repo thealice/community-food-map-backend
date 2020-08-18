@@ -35,7 +35,6 @@ class Api::V1::LocationsController < ApplicationController
     end
   end
 
-  # DELETE /locations/1
   def destroy
     @location.destroy
   end
