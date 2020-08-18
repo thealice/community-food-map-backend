@@ -24,11 +24,9 @@ class Api::V1::LocationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /locations/1
   def update
     if @location.update(location_params)
-      location_json = LocationSerializer.new(@location).serialized_json
-      render json: location_json
+      render json:  LocationSerializer.new(@location), status: :updated
     else
       error_resp = {
         error: @location.errors.full_messages.to_sentence
