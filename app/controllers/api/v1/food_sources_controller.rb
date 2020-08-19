@@ -46,6 +46,6 @@ class Api::V1::FoodSourcesController < ApplicationController
     end
 
     def food_source_params
-      params.require(:food_source).permit(:name, :notes, :user_id, :location_id)
+      params.require(:food_source).permit(:name, :notes, :available, :user_id, :location_id)
     end
 end
